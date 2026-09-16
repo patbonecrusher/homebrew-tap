@@ -7,7 +7,7 @@ cask "mdviewer" do
   desc "Markdown viewer with diagram support"
   homepage "https://github.com/patbonecrusher/mdview"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
   depends_on arch: :arm64
 
   app "MdViewer.app"

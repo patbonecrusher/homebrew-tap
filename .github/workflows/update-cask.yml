@@ -8,6 +8,10 @@ on:
       version:
         description: 'Release version (e.g. 0.2.2)'
         required: true
+      cask:
+        description: 'Cask file name without .rb (mdviewer, svg-viewer)'
+        required: false
+        default: 'mdviewer'
 
 jobs:
   update:
@@ -17,35 +21,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine version
+      - name: Determine version and cask
         id: version
         run: |
-          if [ -n "${{ github.event.client_payload.version }}" ]; then
-            echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "version=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
-          fi
+          VERSION="${{ github.event.client_payload.version }}"
+          [ -n "$VERSION" ] || VERSION="${{ github.event.inputs.version }}"
+          CASK="${{ github.event.client_payload.cask }}"
+          [ -n "$CASK" ] || CASK="${{ github.event.inputs.cask }}"
+          [ -n "$CASK" ] || CASK="mdviewer"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "cask=$CASK" >> "$GITHUB_OUTPUT"
 
       - name: Download and compute SHA256
         id: sha
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          URL="https://github.com/patbonecrusher/mdview/releases/download/v${VERSION}/MdViewer-macos-swift-arm64.tar.gz"
-          SHA=$(curl -sL "$URL" | shasum -a 256 | cut -d' ' -f1)
+          case "${{ steps.version.outputs.cask }}" in
+            svg-viewer) URL="https://github.com/patbonecrusher/svg-viewer/releases/download/v${VERSION}/SVGViewer-${VERSION}.zip" ;;
+            *)          URL="https://github.com/patbonecrusher/mdview/releases/download/v${VERSION}/MdViewer-macos-swift-arm64.tar.gz" ;;
+          esac
+          SHA=$(curl -fsSL "$URL" | shasum -a 256 | cut -d' ' -f1)
+          [ -n "$SHA" ] || { echo "download failed: $URL" >&2; exit 1; }
           echo "sha256=$SHA" >> "$GITHUB_OUTPUT"
 
       - name: Update cask formula
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
-          SHA="${{ steps.sha.outputs.sha256 }}"
-          sed -i "s/version \".*\"/version \"${VERSION}\"/" Casks/mdviewer.rb
-          sed -i "s/sha256 \".*\"/sha256 \"${SHA}\"/" Casks/mdviewer.rb
+          FILE="Casks/${{ steps.version.outputs.cask }}.rb"
+          sed -i "s/version \".*\"/version \"${{ steps.version.outputs.version }}\"/" "$FILE"
+          sed -i "s/sha256 .*/sha256 \"${{ steps.sha.outputs.sha256 }}\"/" "$FILE"
 
       - name: Commit and push
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Casks/mdviewer.rb
-          git commit -m "Update MdViewer cask to v${VERSION}" || exit 0
+          git add Casks
+          git commit -m "Update ${{ steps.version.outputs.cask }} cask to v${{ steps.version.outputs.version }}" || exit 0
           git push
