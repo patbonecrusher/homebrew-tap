@@ -9,7 +9,7 @@ on:
         description: 'Release version (e.g. 0.2.2)'
         required: true
       cask:
-        description: 'Cask file name without .rb (mdviewer, svg-viewer)'
+        description: 'Cask file name without .rb (mdviewer, svg-viewer, stardew-checkup)'
         required: false
         default: 'mdviewer'
 
@@ -38,6 +38,7 @@ jobs:
           VERSION="${{ steps.version.outputs.version }}"
           case "${{ steps.version.outputs.cask }}" in
             svg-viewer) URL="https://github.com/patbonecrusher/svg-viewer/releases/download/v${VERSION}/SVGViewer-${VERSION}.zip" ;;
+            stardew-checkup) URL="https://github.com/patbonecrusher/stardew-checkup/releases/download/v${VERSION}/StardewCheckup-${VERSION}.zip" ;;
             *)          URL="https://github.com/patbonecrusher/mdview/releases/download/v${VERSION}/MdViewer-macos-swift-arm64.tar.gz" ;;
           esac
           SHA=$(curl -fsSL "$URL" | shasum -a 256 | cut -d' ' -f1)
