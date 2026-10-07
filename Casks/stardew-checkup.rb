@@ -1,6 +1,6 @@
 cask "stardew-checkup" do
-  version "1.1"
-  sha256 "9fca46f0d96b69d952588733ffbfce06a8888ef29a3c8631e4516795c2c12988"
+  version "1.2"
+  sha256 "ce550e44e9803e8051d5cb5ee8caebaa321f3f4b8144acb7d37ac3eb73fcc5dc"
 
   url "https://github.com/patbonecrusher/stardew-checkup/releases/download/v#{version}/StardewCheckup-#{version}.zip"
   name "Checkup for Stardew Valley"
