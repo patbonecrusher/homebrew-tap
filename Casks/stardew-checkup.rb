@@ -5,7 +5,7 @@ cask "stardew-checkup" do
   url "https://github.com/patbonecrusher/stardew-checkup/releases/download/v#{version}/StardewCheckup-#{version}.zip"
   name "Checkup for Stardew Valley"
   desc "Achievement and completion checker for Stardew Valley save files"
-  homepage "https://github.com/patbonecrusher/stardew-checkup"
+  homepage "https://patbonecrusher.github.io/stardew-checkup/"
 
   livecheck do
     url :url
