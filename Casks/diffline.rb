@@ -1,6 +1,6 @@
 cask "diffline" do
-  version "1.0.1"
-  sha256 "4aab2ff06a7a6f3a7335c28c4d5ab725efd06c894b05ae2e4fd28378f98e6c40"
+  version "1.0.2"
+  sha256 "075d4defb4e9c144c0e1a285b431026e8a6df46d65b3a1bd8a6e86d2ff84c64f"
 
   url "https://github.com/patbonecrusher/diffline/releases/download/v#{version}/Diffline-#{version}.zip"
   name "Diffline"
