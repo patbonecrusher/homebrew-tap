@@ -1,6 +1,6 @@
 cask "genboard" do
-  version "0.1"
-  sha256 "f8ca127b343a6dc3a0994fb9792f985c9765130eb7448b6cad1755b960bebffc"
+  version "0.1.1"
+  sha256 "89c2a7f3d4268de42f0774bdaafe111604b77c56bcf4bdfaacfe122dd4db258d"
 
   url "https://github.com/patbonecrusher/genboard/releases/download/v#{version}/Genboard-#{version}.zip"
   name "Genboard"
