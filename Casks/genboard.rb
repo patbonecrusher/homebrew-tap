@@ -20,6 +20,7 @@ cask "genboard" do
     "~/Library/Application Support/Genboard",
     "~/Library/Caches/com.patlaplante.Genboard",
     "~/Library/HTTPStorages/com.patlaplante.Genboard",
+    "~/Library/HTTPStorages/com.patlaplante.Genboard.binarycookies",
     "~/Library/Preferences/com.patlaplante.Genboard.plist",
     "~/Library/Saved Application State/com.patlaplante.Genboard.savedState",
     "~/Library/WebKit/com.patlaplante.Genboard",
