@@ -4,7 +4,7 @@ cask "genboard" do
 
   url "https://github.com/patbonecrusher/genboard/releases/download/v#{version}/Genboard-#{version}.zip"
   name "Genboard"
-  desc "Research workbench for genealogy with sessions, an evidence board and family trees"
+  desc "Genealogy research workbench with sessions, an evidence board and family trees"
   homepage "https://patbonecrusher.github.io/genboard/"
 
   livecheck do
