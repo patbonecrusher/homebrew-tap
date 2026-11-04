@@ -18,10 +18,10 @@ cask "genboard" do
 
   zap trash: [
     "~/Library/Application Support/Genboard",
-    "~/Library/Caches/com.genboard.app",
-    "~/Library/HTTPStorages/com.genboard.app",
-    "~/Library/Preferences/com.genboard.app.plist",
-    "~/Library/Saved Application State/com.genboard.app.savedState",
-    "~/Library/WebKit/com.genboard.app",
+    "~/Library/Caches/com.patlaplante.Genboard",
+    "~/Library/HTTPStorages/com.patlaplante.Genboard",
+    "~/Library/Preferences/com.patlaplante.Genboard.plist",
+    "~/Library/Saved Application State/com.patlaplante.Genboard.savedState",
+    "~/Library/WebKit/com.patlaplante.Genboard",
   ]
 end
