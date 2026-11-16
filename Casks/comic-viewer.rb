@@ -1,6 +1,6 @@
 cask "comic-viewer" do
-  version "1.2"
-  sha256 "12a29685783d4050607a929549ab5a0cd01528f79cc21ebf0c93371a71844f7e"
+  version "1.3"
+  sha256 "e4fb7421c4883c47ae8b5fd7dd57d324149dba8afb62a1b031231f289c8dd7d4"
 
   url "https://github.com/patbonecrusher/comic-viewer/releases/download/v#{version}/ComicViewer-#{version}.zip"
   name "Comic Viewer"
